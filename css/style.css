@@ -1,2 +1,5 @@
 body, html{}
 
+#canvas, #img{
+	float: left;
+}
