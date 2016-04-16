@@ -1,27 +1,48 @@
 $(document).ready(function(){
-	$("#canvas").width($("#img").width());
-	$("#canvas").height($("#img").height());
-	console.log($("#img").width());
+	// Create a raster item using the image tag with id='mona'
+var raster = new Raster('mona');
 
-	//console.log($("#img").width()+" "+$("#canvas").width());
+// Hide the raster:
+raster.visible = false;
 
-	//create image
-	var canvas=document.getElementById("canvas");
-	var ctx=canvas.getContext("2d");
-	var img=document.getElementById("img");
-	ctx.drawImage(img,0,0);
-	var imgData=ctx.getImageData(0,0,$("#img").width(), $("#img").height());
-	//console.log(c.width+" "+c.height);
+// The size of our grid cells:
+var gridSize = 12;
 
-	// invert colors
-	for (var i=0;i<imgData.data.length;i+=4)
-	  {
-	  imgData.data[i]=255-imgData.data[i];
-	  imgData.data[i+1]=255-imgData.data[i+1];
-	  imgData.data[i+2]=255-imgData.data[i+2];
-	  imgData.data[i+3]=255;
-	  }
-	ctx.putImageData(imgData,0,0);
+// Space the cells by 120%:
+var spacing = 1.2;
+
+// As the web is asynchronous, we need to wait for the raster to load
+// before we can perform any operation on its pixels.
+raster.on('load', function() {
+	// Since the example image we're using is much too large,
+	// and therefore has way too many pixels, lets downsize it to
+	// 40 pixels wide and 30 pixels high:
+	raster.size = new Size(40, 30);
+
+	for (var y = 0; y < raster.height; y++) {
+		for(var x = 0; x < raster.width; x++) {
+			// Get the color of the pixel:
+			var color = raster.getPixel(x, y);
+
+			// Create a circle shaped path:
+			var path = new Path.Circle({
+				center: new Point(x, y) * gridSize,
+				radius: gridSize / 2 / spacing
+			});
+
+			// Set the fill color of the path to the color
+			// of the pixel:
+			path.fillColor = color;
+		}
+	}
+
+	// Move the active layer to the center of the view, so all 
+	// the created paths in it appear centered.
+	project.activeLayer.position = view.center;
+});
+
+// Move the active layer to the center of the view:
+project.activeLayer.position = view.center;
 
 
 });
