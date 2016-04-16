@@ -1,5 +1,11 @@
-body, html{}
+body, html{
+	background:#ddd;
+}
 
-#canvas, #img{
+
+
+.p{
+	width: 1px;
+	height: 1px;
 	float: left;
 }
