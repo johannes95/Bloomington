@@ -4,11 +4,11 @@
 </head>
 
 <?php 
-	//$skittle_colors = array();
+	$skittle_colors = array(array(214,24,43,94), array(222,118,27,122));
 	$src = "img/stevejobs.jpg";
 	$img = imagecreatefromjpeg($src);
 	$img_size = array("width" => getimagesize($src)[0], "height" => getimagesize($src)[1]);
-	$output_pixel_size = 10;
+	$output_pixel_size = 1;
 	$skittles_required = 0;
 
 	for($h = 0; $h < $img_size["height"]; $h += $output_pixel_size){
@@ -18,7 +18,15 @@
 		$g = ($rgb >> 8) & 0xFF;
 		$b = $rgb & 0xFF;
 
-		echo '<div class="p" style="width:'.$output_pixel_size.'px;height:'.$output_pixel_size.'px;left:'.$w.'px;top:'.$h.'px;background:rgb('.$r.', '.$g.', '.$b.');"></div>';
+
+		$avg = ($r+$g+$b) / 3;
+		if($avg > 110){
+			$avg = 255;
+		}else{
+			$avg = 0;
+		}
+
+		echo '<div class="p" style="width:'.$output_pixel_size.'px;height:'.$output_pixel_size.'px;left:'.$w.'px;top:'.$h.'px;background:rgb('.$avg.', '.$avg.', '.$avg.');"></div>';
 		$skittles_required++;
 	}
 		echo "<br />";
