@@ -1,14 +1,16 @@
 <html>
 <head>
 	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="js/skittles.js"></script>
 </head>
 <body>
 <?php 
-	$skittle_colors = array(array(214,24,43,94), array(222,118,27,122), array(250,246,40,175), array(14,199,51,88), array(86, 6, 117, 209), array(42, 108, 232, 127), array(242,148,148,179));
+	$skittle_colors = array(array(214,24,43,94), /*array(222,118,27,122), array(250,246,40,175), array(14,199,51,88), array(86, 6, 117, 209),*/ array(42, 108, 232, 127), array(242,148,148,179));
 	$src = "img/stevejobs.jpg";
 	$img = imagecreatefromjpeg($src);
 	$img_size = array("width" => getimagesize($src)[0], "height" => getimagesize($src)[1]);
-	$output_pixel_size = 8;
+	$output_pixel_size = 15;
 	$skittles_required = 0;
 
 	for($h = 0; $h < $img_size["height"]; $h += $output_pixel_size){
