@@ -6,15 +6,15 @@
 </head>
 <body>
 <?php 
-	$skittle_colors = array(array(86, 6, 90, 0), array(214,24,43,105), array(42, 108, 232, 120), array(14,199,51,140), array(222,118,27,160), array(250,246,40,255), array(242,148,148,180));
+	$skittle_colors = array(array(86, 6, 90, 0), array(214,24,43,105), array(42, 108, 232, 120), array(14,199,51,140), array(222,118,27,160), array(250,246,40,255));
 	//$skittle_colors = array();
 	/*foreach($skittle_colors as $color){
 		echo '<div style="float:left;width:250px;height:30px;background:rgb('.$color[0].', '.$color[1].', '.$color[2].');">JoJo</div><br /><br />';
 	}*/
-	$src = "img/stevejobs.jpg";
+	$src = $_GET["img"];//"img/stevejobs.jpg";
 	$img = imagecreatefromjpeg($src);
 	$img_size = array("width" => getimagesize($src)[0], "height" => getimagesize($src)[1]);
-	$output_pixel_size = 15;
+	$output_pixel_size = 5;
 	$skittles_required = 0;
 
 	for($h = 0; $h < $img_size["height"]; $h += $output_pixel_size){
