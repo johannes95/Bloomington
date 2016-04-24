@@ -1,0 +1,25 @@
+body, html, .container{
+	background:#2ecc71 !important;
+}
+
+header{
+	margin-bottom: 25px;
+	background:#fff;
+}
+
+
+#edit-img-frame{
+	border: 3px solid #2ecc71;
+	border-radius: 10px;
+	padding:25px;
+	margin-top:15px;
+}
+
+#edit-img-frame img{
+	width: 100%;
+}
+
+
+footer{
+	clear:both;
+}
